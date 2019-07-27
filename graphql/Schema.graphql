@@ -1,0 +1,14 @@
+type Query {
+    users: [User!]!
+}
+
+type User {
+    id: ID!
+    email: String!
+    role: Role!
+}
+
+type Role {
+    id: ID!
+    role: String!
+}
