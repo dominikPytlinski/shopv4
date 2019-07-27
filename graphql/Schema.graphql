@@ -1,5 +1,8 @@
 type Query {
     users: [User!]!
+    roles: [Role]!
+    categories: [Category]!
+    products: [Product]!
 }
 
 type User {
@@ -11,4 +14,18 @@ type User {
 type Role {
     id: ID!
     role: String!
+}
+
+type Category {
+    id: ID!
+    name: String!
+}
+
+type Product {
+    id: ID!
+    name: String!
+    desc: String!
+    price: Float!
+    img: String!
+    category: Category!
 }
