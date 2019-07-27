@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const UserModel = require('../models/User');
 const RoleModel = require('../models/Role');
 const CategoryModel = require('../models/Category');
@@ -52,6 +54,22 @@ const Query = {
     }
 }
 
+const Mutation = {
+    createUser: async (parent, args) => {
+        const passwordHash = await bcrypt.hash(args.password, 12);
+        let user = new UserModel({
+            email: args.email,
+            password: passwordHash,
+            roleId: args.roleId
+        });
+        const newUser = await user.save();
+        return {
+            ...newUser._doc,
+            id: newUser._doc._id
+        }
+    }
+}
+
 const Order = {
     user: async (parent) => {
         return await UserModel.findById(parent.userId);
@@ -84,4 +102,4 @@ const User = {
     }
 }
 
-module.exports = { Query, User, Product, Order, OrderItem };
+module.exports = { Query, User, Product, Order, OrderItem, Mutation };

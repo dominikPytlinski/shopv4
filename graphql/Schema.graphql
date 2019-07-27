@@ -6,6 +6,10 @@ type Query {
     orders: [Order]!
 }
 
+type Mutation {
+    createUser(email: String!, password: String!, roleId: ID!): User!
+}
+
 type User {
     id: ID!
     email: String!

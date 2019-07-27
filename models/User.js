@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     email: String,
-    pass: String,
+    password: String,
     roleId: String,
     orders: [String]
 });
