@@ -2,6 +2,7 @@ const UserModel = require('../models/User');
 const RoleModel = require('../models/Role');
 const CategoryModel = require('../models/Category');
 const ProductModel = require('../models/Product');
+const OrderModel = require('../models/Order');
 
 const Query = {
     users: async () => {
@@ -39,6 +40,35 @@ const Query = {
                 id: product._doc._id
             }
         });
+    },
+    orders: async () => {
+        const orders = await OrderModel.find({});
+        return orders.map(order => {
+            return {
+                ...order._doc,
+                id: order._doc._id
+            }
+        });
+    }
+}
+
+const Order = {
+    user: async (parent) => {
+        return await UserModel.findById(parent.userId);
+    },
+    products: async (parent) => {
+        return parent.products.map(product => {
+            return product;
+        });
+    }
+}
+
+const OrderItem = {
+    quantity: (parent) => {
+        return parent[0];
+    },
+    product: async (parent) => {
+        return await ProductModel.findById(parent[1]);
     }
 }
 
@@ -54,4 +84,4 @@ const User = {
     }
 }
 
-module.exports = { Query, User, Product };
+module.exports = { Query, User, Product, Order, OrderItem };
