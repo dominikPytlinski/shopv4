@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const UserModel = require('../models/User');
 const RoleModel = require('../models/Role');
@@ -67,6 +68,32 @@ const Mutation = {
             ...newUser._doc,
             id: newUser._doc._id
         }
+    },
+    login: async (parent, args) => {
+        const user = await UserModel.findOne({ email: args.email });
+        if(!user) throw new Error('Invalid credentials');
+
+        const validPassword = await bcrypt.compare(args.password, user._doc.password);
+        if(!validPassword) throw new Error('Invalid credentials');
+
+        const token = jwt.sign({
+            userId: user._doc._id,
+            roleId: user._doc.roleId
+        }, process.env.APP_KEY, {
+            expiresIn: '1200s'
+        });
+
+        return {
+            token: token,
+            userId: user._doc._id,
+            role: user._doc.roleId
+        }
+    }
+}
+
+const Auth = {
+    role: async (parent) => {
+        return await RoleModel.findById(parent.role);
     }
 }
 
@@ -102,4 +129,4 @@ const User = {
     }
 }
 
-module.exports = { Query, User, Product, Order, OrderItem, Mutation };
+module.exports = { Query, User, Product, Order, OrderItem, Mutation, Auth };
