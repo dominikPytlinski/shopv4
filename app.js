@@ -4,6 +4,17 @@ const mongoose = require('mongoose');
 const { ApolloServer, gql } = require('apollo-server-express');
 const fs = require('fs');
 const cors = require('cors');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+})
+const upload = multer({ storage: storage });
 
 require('dotenv').config();
 
@@ -13,6 +24,13 @@ const resolvers = require('./graphql/Resolvers');
 const app = express();
 
 app.use(cors());
+
+app.use('/upload', upload.single('img'), (req, res, next) => {
+    console.log(req.file);
+    res.status(200).json({ message: 'it works' });
+});
+
+app.use('/uploads', express.static('uploads'));
 
 const server = new ApolloServer({
     typeDefs,
