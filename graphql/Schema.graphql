@@ -9,6 +9,7 @@ type Query {
 type Mutation {
     createUser(email: String!, password: String!, roleId: ID!): User!
     login(email: String!, password: String!): Auth!
+    addProduct(name: String!, desc: String!, price: Float!, img: String, categoryId: ID!): Product!
 }
 
 type User {

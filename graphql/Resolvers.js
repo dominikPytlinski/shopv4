@@ -88,6 +88,24 @@ const Mutation = {
             userId: user._doc._id,
             role: user._doc.roleId
         }
+    },
+    addProduct: async (parent, args) => {
+        const { name, desc, price, img, categoryId } = args;
+
+        let product = new ProductModel({
+            name,
+            desc,
+            img,
+            price,
+            categoryId
+        });
+
+        const newProduct = await product.save();
+
+        return {
+            ...newProduct._doc,
+            id: newProduct._doc._id
+        }
     }
 }
 
