@@ -10,6 +10,7 @@ class Menu extends Component {
                     <Fragment>
                         <NavLink to="/" exact activeClassName="selected" >Główna</NavLink>
                         <NavLink to="/products" activeClassName="selected" >Produkty</NavLink>
+                        <NavLink to="/add-product" activeClassName="selected" >Dodaj Produkt</NavLink>
                         <NavLink to="/logout" activeClassName="selected" >Logout</NavLink>
                     </Fragment> :
                     <Fragment>

@@ -20,31 +20,29 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <Mutation
-                    mutation={LOGIN_MUTATION}
-                    onCompleted={(data) => {
-                        this.props.login(true);
-                        this.setState({ isLogged: true });
-                        sessionStorage.setItem('auth', JSON.stringify({
-                            name: 'auth',
-                            data: {
-                                token: data.login.token,
-                                role: data.login.role.role
-                            }
-                        }));
-                    }}
-                >
-                    {
-                        (login, {loading, error, data}) => {
-                            if(loading) return <Loading />
-                            if(error) return <p>{error.message}</p>
-
-                            return (!this.state.isLogged) ? <LoginFrom login={login}/> : <Redirect to="/" />;
+            <Mutation
+                mutation={LOGIN_MUTATION}
+                onCompleted={(data) => {
+                    this.props.login(true);
+                    this.setState({ isLogged: true });
+                    sessionStorage.setItem('auth', JSON.stringify({
+                        name: 'auth',
+                        data: {
+                            token: data.login.token,
+                            role: data.login.role.role
                         }
+                    }));
+                }}
+            >
+                {
+                    (login, {loading, error, data}) => {
+                        if(loading) return <Loading />
+                        if(error) return <p>{error.message}</p>
+
+                        return (!this.state.isLogged) ? <LoginFrom login={login}/> : <Redirect to="/" />;
                     }
-                </Mutation>
-            </div>
+                }
+            </Mutation>
         )
     }
 }

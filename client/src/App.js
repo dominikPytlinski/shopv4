@@ -6,6 +6,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Header from './components/Header';
 import Logout from './components/Logout';
+import AddProduct from './components/AddProduct';
 
 import './App.css';
 
@@ -45,12 +46,16 @@ class App extends Component {
             render={() => {}}
           />
           <Route 
+            path="/add-product"
+            render={() => <AddProduct isLogged={this.state.isLogged} />}
+          />
+          <Route 
             path="/login"
             render={() => <Login isLogged={this.state.isLogged} login={this.login} />}
           />
           <Route
             path="/logout"
-            render={() => <Logout logout={this.logout} />}
+            render={() => <Logout isLogged={this.state.isLogged} logout={this.logout} />}
           />
         </BrowserRouter>
       </ApolloProvider>
