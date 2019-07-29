@@ -140,11 +140,82 @@ header div.menu a:hover {
     border: 2px solid var(--primary-color);
 }
 
-.login-form form .form-control button {
-    margin-left: 2rem;
+/* Login form end */
+
+/* Add product form */
+
+.add-product-form {
+    border: 1px solid #000;
+    width: 50%;
+    margin: 2rem auto 0 auto;
+    padding: 1rem;
+    background-color: #fdfdfd;
+    -webkit-box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
+    box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
 }
 
-/* Login form end */
+.add-product-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-product-form form .form-control {
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+}
+
+.add-product-form form .form-control label {
+    width: 10%;
+    text-align: right;
+    margin-right: .5rem;
+    padding-top: 1rem;
+}
+
+.add-product-form form .form-control input {
+    width: 90%;
+    padding: 1rem;
+    outline: none;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-product-form form .form-control textarea {
+    width: 90%;
+    height: 20vh;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.add-product-form form .form-control select {
+    width: 90%;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.add-product-form form .form-control section {
+    width: 90%;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.add-product-form form .form-control textarea:focus,
+.add-product-form form .form-control textarea:active,
+.add-product-form form .form-control input:focus,
+.add-product-form form .form-control input:active,
+.add-product-form form .form-control select:active,
+.add-product-form form .form-control select:active {
+    border: 2px solid var(--primary-color);
+}
+
+/* Add product form end */
 
 /* Spinner */
 
