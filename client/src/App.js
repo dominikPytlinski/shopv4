@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import Login from './components/Login';
 import Header from './components/Header';
+import Logout from './components/Logout';
 
 import './App.css';
 
@@ -26,6 +27,13 @@ class App extends Component {
     if(isLogged) this.setState({ isLogged: true });
   }
 
+  logout = (isLogout) => {
+    if(isLogout) {
+      sessionStorage.clear();
+      this.setState({ isLogged: false });
+    }
+  }
+
   render() 
   {
     return (
@@ -39,6 +47,10 @@ class App extends Component {
           <Route 
             path="/login"
             render={() => <Login isLogged={this.state.isLogged} login={this.login} />}
+          />
+          <Route
+            path="/logout"
+            render={() => <Logout logout={this.logout} />}
           />
         </BrowserRouter>
       </ApolloProvider>
