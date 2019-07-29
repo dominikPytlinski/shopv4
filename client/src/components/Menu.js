@@ -1,13 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { NavLink } from 'react-router-dom';
 
 class Menu extends Component {
     render() {
         return (
             <div className="menu">
-                <NavLink to="/" exact activeClassName="selected" >Główna</NavLink>
-                <NavLink to="/products" activeClassName="selected" >Producty</NavLink>
-                <NavLink to="/login" activeClassName="selected" >Login</NavLink>
+                {
+                    (this.props.isLogged) ?
+                    <Fragment>
+                        <NavLink to="/" exact activeClassName="selected" >Główna</NavLink>
+                        <NavLink to="/products" activeClassName="selected" >Produkty</NavLink>
+                        <NavLink to="/logout" activeClassName="selected" >Logout</NavLink>
+                    </Fragment> :
+                    <Fragment>
+                        <NavLink to="/" exact activeClassName="selected" >Główna</NavLink>
+                        <NavLink to="/products" activeClassName="selected" >Produkty</NavLink>
+                        <NavLink to="/login" activeClassName="selected" >Login</NavLink>
+                    </Fragment>
+                }
             </div>
         )
     }

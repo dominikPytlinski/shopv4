@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import LoginFrom from './LoginFrom';
 import Mutation from 'react-apollo/Mutation';
 import { Redirect } from 'react-router-dom';
 
 import Loading from './Loading';
+import LoginFrom from './LoginFrom';
 
 import { LOGIN_MUTATION } from '../queries/Queries';
 
@@ -26,6 +26,13 @@ class Login extends Component {
                     onCompleted={(data) => {
                         this.props.login(true);
                         this.setState({ isLogged: true });
+                        sessionStorage.setItem('auth', JSON.stringify({
+                            name: 'auth',
+                            data: {
+                                token: data.login.token,
+                                role: data.login.role.role
+                            }
+                        }));
                     }}
                 >
                     {

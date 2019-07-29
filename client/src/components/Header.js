@@ -8,7 +8,7 @@ class Header extends Component {
                 <div className="brand">
                     <span>Company Name</span>
                 </div>
-                <Menu />
+                <Menu isLogged={this.props.isLogged}/>
             </header>
         )
     }

@@ -18,12 +18,12 @@ class App extends Component {
   {
     super(props);
     this.state = {
-      isLogged: false
+      isLogged: sessionStorage.getItem('auth') ? true : false
     }
   }
 
   login = (isLogged) => {
-    if(isLogged) this.setState({ isLogged: !this.state.isLogged });
+    if(isLogged) this.setState({ isLogged: true });
   }
 
   render() 
@@ -31,7 +31,7 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <BrowserRouter>
-          <Header />
+          <Header isLogged={this.state.isLogged}/>
           <Route 
             path="/" exact
             render={() => {}}
