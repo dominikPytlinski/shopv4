@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap&subset=latin-ext');
+
+:root {
+    --danger-color: #ff4444;
+    --dangerr-color-dark: #CC0000;
+    --warning-color: #ffbb33;
+    --warning-color-dark: #FF8800;
+    --success-color: #00C851;
+    --success-color-dark: #007E33;
+    --info-color: #33b5e5;
+    --info-color-dark: #0099CC;
+    --default-color: #2BBBAD;
+    --default-color-dark: #00695c;
+    --primary-color: #4285F4;
+    --primary-color-dark: #0d47a1;
+    --secondary-color: #aa66cc;
+    --secondary-color-dark: #9933CC;
+    --selected-color: #FFFF99;
+}
+
+*,
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn {
+    padding: 1rem;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: #fff;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+    box-shadow: 0 0 1pt 1pt var(--primary-color);
+}
+
+.selected {
+    color: var(--selected-color);
+}
+
+/* Header */
+
+header {
+    width: 100%;
+    height: 4rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    display: flex;
+}
+
+header div {
+    height: 100%;
+}
+
+header div.brand {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 20%;
+}
+
+header div.menu {
+    width: 80%;
+    margin-right: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+header div.menu a {
+    display: block;
+    line-height: 200%;
+    padding: 1rem;
+}
+
+header div.menu a:hover {
+    background-color: #5396F5;
+}
+
+/* Header end */
+
+/* Login form */
+
+.login-form {
+    width: 50%;
+    margin: 1rem auto 0 auto;
+    padding: 1rem;
+    background-color: #fdfdfd;
+    -webkit-box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
+    box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form form .form-control {
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+}
+
+.login-form form .form-control label {
+    width: 10%;
+    text-align: right;
+    margin-right: .5rem;
+    padding-top: 1rem;
+}
+
+.login-form form .form-control input {
+    width: 90%;
+    padding: 1rem;
+    outline: none;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-form form .form-control input:active,
+.login-form form .form-control input:focus {
+    border: 2px solid var(--primary-color);
+}
+
+.login-form form .form-control button {
+    margin-left: 2rem;
+}
+
+/* Login form end */
+
+/* Spinner */
+
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 5px solid #fefefe;
+    border-color: #000 transparent #000 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}  
+
+/* Spinner end */
+
+@keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { ApolloServer, gql } = require('apollo-server-express');
 const fs = require('fs');
+const cors = require('cors');
 
 require('dotenv').config();
 
@@ -10,6 +11,8 @@ const typeDefs = fs.readFileSync('./graphql/Schema.graphql', { encoding: 'utf-8'
 const resolvers = require('./graphql/Resolvers');
 
 const app = express();
+
+app.use(cors());
 
 const server = new ApolloServer({
     typeDefs,
