@@ -21,3 +21,12 @@ export const GET_CATEGORIES_QUERY = gql`
         }
     }
 `;
+
+export const ADD_PRODUCT_MUTATION = gql`
+    mutation($name: String!, $desc: String!, $price: Float!, $img: String!, $categoryId: ID!){
+        addProduct(name: $name, desc: $desc, price: $price, img: $img, categoryId: $categoryId){
+            id
+            name
+        }
+    }
+`;

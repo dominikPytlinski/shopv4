@@ -26,8 +26,7 @@ const app = express();
 app.use(cors());
 
 app.use('/upload', upload.single('img'), (req, res, next) => {
-    console.log(req.file);
-    res.status(200).json({ message: 'it works' });
+    res.status(200).json({ path: `http://localhost:4000/uploads/${req.file.originalname}` });
 });
 
 app.use('/uploads', express.static('uploads'));

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Dropzone from 'react-dropzone';
 import Query from 'react-apollo/Query';
+import axios from 'axios';
 
 import Loading from './Loading';
 
@@ -14,22 +15,39 @@ class AddProductForm extends Component {
         this.state = {
             name: '',
             desc: '',
-            img: '',
             price: 0,
-            dropzoneText: "Drag 'n' drop some files here, or click to select files",
-            file: null
+            img: '',
+            categoryId: ''
         }
     }
 
-    uploadFile = (file) => {
-        this.setState({ 
-            dropzoneText: file.name,
-            file: file
-         });
+    uploadFile = async (file) => {
+        let formData = new FormData();
+        formData.append('img', file);
+
+        const res = await axios.post('http://localhost:4000/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        this.setState({ img: res.data.path });
     }
 
     submitHandler = (e) => {
         e.preventDefault();
+
+        const{ name, desc, price, img, categoryId } = this.state;
+
+        this.props.addProduct({
+            variables: {
+                name,
+                desc,
+                price,
+                img,
+                categoryId
+            }
+        });
     }
 
     render() {
@@ -46,30 +64,38 @@ class AddProductForm extends Component {
                     </div>
                     <div className="form-control">
                         <label htmlFor="price">Cena: </label>
-                        <input value={this.state.price} onChange={(e) => this.setState({ price: e.target.value })} type="number" id="price" />
+                        <input value={this.state.price} onChange={(e) => this.setState({ price: parseFloat(e.target.value) })} type="number" id="price" />
                     </div>
                     <div className="form-control">
-                        <label htmlFor="img">Zdjęcie: </label>
-                        <Dropzone
-                            onDrop={acceptedFiles => this.uploadFile(acceptedFiles[0])}
-                        >
+                        <Fragment>
+                            <label htmlFor="img">Zdjęcie: </label>
                             {
-                                ({ getRootProps, getInputProps }) => {
-                                    return(
-                                        <section>
-                                            <div {...getRootProps()}>
-                                                <input {...getInputProps()} />
-                                                <p>{this.state.dropzoneText}</p>
-                                            </div>
-                                        </section>
-                                    )
-                                }
+                                (this.state.img) ? 
+                                <div className="img-min">
+                                    <img src={this.state.img} alt="produt" />
+                                </div> :
+                                <Dropzone
+                                    onDrop={acceptedFiles => this.uploadFile(acceptedFiles[0])}
+                                >
+                                    {
+                                        ({ getRootProps, getInputProps }) => {
+                                            return(
+                                                <section>
+                                                    <div {...getRootProps()}>
+                                                        <input {...getInputProps()} />
+                                                        <p>Drag 'n' drop some files here, or click to select files</p>
+                                                    </div>
+                                                </section>
+                                            )
+                                        }
+                                    }
+                                </Dropzone>
                             }
-                        </Dropzone>
+                        </Fragment>
                     </div>
                     <div className="form-control">
                         <label htmlFor="categoryId">Kategoria</label>
-                        <select id="categoryId">
+                        <select id="categoryId" onChange={(e) => this.setState({ categoryId: e.target.value })} >
                             <option>Wybierz</option>
                             <Query
                                 query={GET_CATEGORIES_QUERY}
@@ -80,7 +106,7 @@ class AddProductForm extends Component {
                                         if(error) return <p>{error.message}</p>
 
                                         return data.categories.map(category => {
-                                            return <option key={category.id}>{category.name}</option>
+                                            return <option key={category.id} value={category.id}>{category.name}</option>
                                         })
                                     }
                                 }
