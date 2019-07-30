@@ -43,6 +43,7 @@ header {
     background-color: var(--primary-color);
     color: #fff;
     display: flex;
+    z-index: 2;
 }
 
 header div {
@@ -207,10 +208,13 @@ form .form-control select:focus {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 60vh;
-    margin-top: 4rem;
+    height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .page-header div {
@@ -239,12 +243,12 @@ form .form-control select:focus {
 
 .page-content {
     width: 90%;
-    margin: 0 auto;
+    margin: 4rem auto 0 auto;
     border-radius: 5px;
     padding: 1rem;
     background-color: #efefef;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 260px));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-column-gap: 1.5rem;
     grid-row-gap: 2rem;
 }
@@ -266,6 +270,7 @@ form .form-control select:focus {
 
 .page-item .item-header {
     padding: 1rem;
+    max-height: 4rem;
     text-align: center;
     font-weight: 700;
     color: var(--primary-color);
@@ -275,11 +280,14 @@ form .form-control select:focus {
 .page-item .item-content {
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
 .page-item .item-content img {
-    max-width: 100%;
-    height: auto;
+    width: 300px;
+    height: 300px;
 }
 
 .page-item .item-content .add-to-cart {

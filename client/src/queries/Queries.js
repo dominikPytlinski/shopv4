@@ -30,3 +30,14 @@ export const ADD_PRODUCT_MUTATION = gql`
         }
     }
 `;
+
+export const GET_PRODUCTS = gql`
+    query{
+        products{
+            id
+            name
+            price
+            img
+        }
+    }
+`;

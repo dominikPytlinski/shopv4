@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Logout from './components/Logout';
 import AddProduct from './components/AddProduct';
 import Products from './components/Products';
+import Main from './components/Main';
 
 import './App.css';
 
@@ -21,7 +22,8 @@ class App extends Component {
   {
     super(props);
     this.state = {
-      isLogged: sessionStorage.getItem('auth') ? true : false
+      isLogged: sessionStorage.getItem('auth') ? true : false,
+      refetch: false
     }
   }
 
@@ -36,6 +38,10 @@ class App extends Component {
     }
   }
 
+  checkRefetch = (isAdded) => {
+    isAdded && this.setState({ refetch: true });
+  }
+
   render() 
   {
     return (
@@ -44,11 +50,15 @@ class App extends Component {
           <Header isLogged={this.state.isLogged}/>
           <Route 
             path="/" exact
-            render={() => <Products />}
+            render={() => <Main />}
+          />
+          <Route 
+            path="/products"
+            render={() => <Products refetch={this.state.refetch} />}
           />
           <Route 
             path="/add-product"
-            render={() => <AddProduct isLogged={this.state.isLogged} />}
+            render={() => <AddProduct refetch={this.checkRefetch} isLogged={this.state.isLogged} />}
           />
           <Route 
             path="/login"

@@ -12,6 +12,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class AddProduct extends Component {
 
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            isAdded: false
+        }
+    }
+
     notify = (name) => {
         toast.success(`Product ${name} was added successfuly`);
     }
@@ -26,6 +34,7 @@ class AddProduct extends Component {
                         <Mutation
                             mutation={ADD_PRODUCT_MUTATION}
                             onCompleted={data => {
+                                this.setState({ isAdded: true });
                                 this.notify(data.addProduct.name);
                             }}
                         >
