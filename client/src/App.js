@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Header from './components/Header';
 import Logout from './components/Logout';
 import AddProduct from './components/AddProduct';
+import Products from './components/Products';
 
 import './App.css';
 
@@ -43,7 +44,7 @@ class App extends Component {
           <Header isLogged={this.state.isLogged}/>
           <Route 
             path="/" exact
-            render={() => {}}
+            render={() => <Products />}
           />
           <Route 
             path="/add-product"

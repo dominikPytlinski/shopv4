@@ -32,33 +32,12 @@ a {
     color: #fff;
 }
 
-.btn {
-    padding: 1rem;
-    letter-spacing: 1px;
-    border-radius: 3px;
-    background-color: transparent;
-    outline: none;
-    cursor: pointer;
-}
-
-.btn-primary {
-    color: #fff;
-    border: 1px solid var(--primary-color);
-    background-color: var(--primary-color);
-}
-
-.btn-primary:focus,
-.btn-primary:active {
-    box-shadow: 0 0 1pt 1pt var(--primary-color);
-}
-
-.selected {
-    color: var(--selected-color);
-}
-
 /* Header */
 
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 4rem;
     background-color: var(--primary-color);
@@ -97,6 +76,79 @@ header div.menu a:hover {
 
 /* Header end */
 
+/* Form */
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form .form-control {
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+}
+
+form .form-control label {
+    width: 10%;
+    text-align: right;
+    margin-right: .5rem;
+    padding-top: 1rem;
+}
+
+form .form-control input,
+form .form-control select {
+    width: 90%;
+    padding: 1rem;
+    outline: none;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+form .form-control textarea {
+    width: 90%;
+    height: 20vh;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+form .form-control input:active,
+form .form-control input:focus,
+form .form-control textarea:active,
+form .form-control textarea:focus,
+form .form-control select:active,
+form .form-control select:focus {
+    border: 2px solid var(--primary-color);
+}
+
+/* Form end */
+
+/* Btn */
+
+.btn {
+    padding: .5rem;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: #fff;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+    box-shadow: 0 0 1pt 1pt var(--primary-color);
+}
+
+/* Btn end */
+
 /* IMG */
 
 .img-min {
@@ -115,43 +167,12 @@ header div.menu a:hover {
 
 .login-form {
     width: 50%;
-    margin: 1rem auto 0 auto;
+    margin: 6rem auto 0 auto;
     padding: 1rem;
     background-color: #fdfdfd;
     -webkit-box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
     -moz-box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
     box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
-}
-
-.login-form form {
-    display: flex;
-    flex-direction: column;
-}
-
-.login-form form .form-control {
-    width: 100%;
-    padding: 1rem 0;
-    display: flex;
-}
-
-.login-form form .form-control label {
-    width: 10%;
-    text-align: right;
-    margin-right: .5rem;
-    padding-top: 1rem;
-}
-
-.login-form form .form-control input {
-    width: 90%;
-    padding: 1rem;
-    outline: none;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-}
-
-.login-form form .form-control input:active,
-.login-form form .form-control input:focus {
-    border: 2px solid var(--primary-color);
 }
 
 /* Login form end */
@@ -161,55 +182,12 @@ header div.menu a:hover {
 .add-product-form {
     border: 1px solid #000;
     width: 50%;
-    margin: 2rem auto 0 auto;
+    margin: 6rem auto 0 auto;
     padding: 1rem;
     background-color: #fdfdfd;
     -webkit-box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
     -moz-box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
     box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
-}
-
-.add-product-form form {
-    display: flex;
-    flex-direction: column;
-}
-
-.add-product-form form .form-control {
-    width: 100%;
-    padding: 1rem 0;
-    display: flex;
-}
-
-.add-product-form form .form-control label {
-    width: 10%;
-    text-align: right;
-    margin-right: .5rem;
-    padding-top: 1rem;
-}
-
-.add-product-form form .form-control input {
-    width: 90%;
-    padding: 1rem;
-    outline: none;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-}
-
-.add-product-form form .form-control textarea {
-    width: 90%;
-    height: 20vh;
-    padding: 1rem;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-}
-
-.add-product-form form .form-control select {
-    width: 90%;
-    padding: 1rem;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    outline: none;
 }
 
 .add-product-form form .form-control section {
@@ -220,16 +198,124 @@ header div.menu a:hover {
     outline: none;
 }
 
-.add-product-form form .form-control textarea:focus,
-.add-product-form form .form-control textarea:active,
-.add-product-form form .form-control input:focus,
-.add-product-form form .form-control input:active,
-.add-product-form form .form-control select:active,
-.add-product-form form .form-control select:active {
-    border: 2px solid var(--primary-color);
+/* Add product form end */
+
+/* Page header */
+
+.page-header {
+    background-image: url('./img/photo.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 60vh;
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
 }
 
-/* Add product form end */
+.page-header div {
+    background-color: rgba(0,0,0,0.3);
+    width: 30%;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-left: 10%;
+    color: #fff;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.page-header div p {
+    margin: 1rem 0 2rem 0;
+}
+
+.page-header div a {
+    font-size: .9rem;
+}
+
+/* Page header end */
+
+/* Page content */
+
+.page-content {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 1rem;
+    background-color: #efefef;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 260px));
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 2rem;
+}
+
+/* Page content end */
+
+/* Page item */
+
+.page-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.page-item .item-header {
+    padding: 1rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+.page-item .item-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.page-item .item-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.page-item .item-content .add-to-cart {
+    position: absolute;
+    top: 70%;
+    right: 0;
+    padding: .5rem;
+    width: 50%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: var(--warning-color);
+    border-bottom: 1px solid var(--warning-color-dark);
+    border-top: 1px solid var(--warning-color-dark);
+    border-left: 1px solid var(--warning-color-dark);
+    transform: translateX(100%);
+    transition: all .3s linear;
+    cursor: pointer;
+}
+
+.page-item .item-content .add-to-cart:hover {
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.page-item .item-content:hover .add-to-cart {
+    transform: translateX(0);
+}
+
+.page-item .item-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    align-items: center;
+}
+
+/* Page item end */
 
 /* Spinner */
 
@@ -237,7 +323,7 @@ header div.menu a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 5rem;
 }
 
 .lds-dual-ring {
@@ -258,6 +344,10 @@ header div.menu a:hover {
 }  
 
 /* Spinner end */
+
+.selected {
+    color: var(--selected-color);
+}
 
 @keyframes lds-dual-ring {
     0% {
