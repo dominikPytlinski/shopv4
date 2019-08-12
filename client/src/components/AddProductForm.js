@@ -72,7 +72,7 @@ class AddProductForm extends Component {
                             {
                                 (this.state.img) ? 
                                 <div className="img-min">
-                                    <img src={this.state.img} alt="produt" />
+                                    <img src={this.state.img} alt="product" />
                                 </div> :
                                 <Dropzone
                                     onDrop={acceptedFiles => this.uploadFile(acceptedFiles[0])}
