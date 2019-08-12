@@ -9,6 +9,7 @@ import Logout from './components/Logout';
 import AddProduct from './components/AddProduct';
 import Products from './components/Products';
 import Main from './components/Main';
+import Product from './components/Product';
 
 import './App.css';
 
@@ -54,11 +55,15 @@ class App extends Component {
           />
           <Route 
             path="/products"
-            render={() => <Products refetch={this.state.refetch} />}
+            render={() => <Products />}
+          />
+          <Route
+            path="/product/:id"
+            component={Product}
           />
           <Route 
             path="/add-product"
-            render={() => <AddProduct refetch={this.checkRefetch} isLogged={this.state.isLogged} />}
+            render={() => <AddProduct isLogged={this.state.isLogged} />}
           />
           <Route 
             path="/login"

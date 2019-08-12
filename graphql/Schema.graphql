@@ -3,6 +3,7 @@ type Query {
     roles: [Role]!
     categories: [Category]!
     products: [Product]!
+    product(id: ID!): Product!
     orders: [Order]!
 }
 

@@ -44,6 +44,9 @@ const Query = {
             }
         });
     },
+    product: async (parent, args) => {
+        return await ProductModel.findById(args.id);
+    },
     orders: async () => {
         const orders = await OrderModel.find({});
         return orders.map(order => {

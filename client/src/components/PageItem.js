@@ -22,7 +22,7 @@ class PageItem extends Component {
                         <span>{price} PLN </span>
                     </div>
                     <div className="item-action">
-                        <Link to={`/products/${id}`} className="btn btn-primary" >Więcej</Link>
+                        <Link to={`/product/${id}`} className="btn btn-primary" >Więcej</Link>
                     </div>
                 </div>
             </div>
