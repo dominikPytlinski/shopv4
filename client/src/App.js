@@ -14,7 +14,15 @@ import Product from './components/Product';
 import './App.css';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql'
+  uri: 'http://localhost:4000/graphql',
+  request: async operation => {
+    const auth = await JSON.parse(sessionStorage.getItem('auth'));
+    operation.setContext({
+      headers: {
+        authorization: auth ? `Bearer ${auth.data.token}` : ''
+      }
+    })
+  }
 });
 
 class App extends Component {
@@ -37,10 +45,6 @@ class App extends Component {
       sessionStorage.clear();
       this.setState({ isLogged: false });
     }
-  }
-
-  checkRefetch = (isAdded) => {
-    isAdded && this.setState({ refetch: true });
   }
 
   render() 

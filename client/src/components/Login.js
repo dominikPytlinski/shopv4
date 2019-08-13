@@ -35,7 +35,7 @@ class Login extends Component {
                 }}
             >
                 {
-                    (login, {loading, error, data}) => {
+                    (login, {loading, error}) => {
                         if(loading) return <Loading />
                         if(error) return <p>{error.message}</p>
 

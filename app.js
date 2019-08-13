@@ -5,6 +5,7 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const fs = require('fs');
 const cors = require('cors');
 const multer = require('multer');
+const jwt = require('jsonwebtoken');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

@@ -23,7 +23,7 @@ class Product extends Component {
                         return(
                             <div className="single-item">
                                 <div>
-                                    <img src={img} />
+                                    <img src={img} alt="product"/>
                                 </div>
                                 <div>
                                     <div>{name}</div>

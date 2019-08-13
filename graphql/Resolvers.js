@@ -35,7 +35,7 @@ const Query = {
             }
         });
     },
-    products: async () => {
+    products: async (parent, args, context) => {
         const products = await ProductModel.find({});
         return products.map(product => {
             return {
@@ -79,9 +79,11 @@ const Mutation = {
         const validPassword = await bcrypt.compare(args.password, user._doc.password);
         if(!validPassword) throw new Error('Invalid credentials');
 
+        const role = await RoleModel.findById(user._doc.roleId);
+
         const token = jwt.sign({
             userId: user._doc._id,
-            roleId: user._doc.roleId
+            role: role.role
         }, process.env.APP_KEY, {
             expiresIn: '1200s'
         });
@@ -92,7 +94,9 @@ const Mutation = {
             role: user._doc.roleId
         }
     },
-    addProduct: async (parent, args) => {
+    addProduct: async (parent, args, context) => {
+        // if(!context.userId) throw new Error('Unauthorize');
+
         const { name, desc, price, img, categoryId } = args;
 
         let product = new ProductModel({
