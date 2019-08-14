@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Mutation from 'react-apollo/Mutation';
 import { Redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import Loading from './Loading';
 import LoginFrom from './LoginFrom';
@@ -18,31 +19,37 @@ class Login extends Component {
         
     }
 
+    notify = (message) => {
+        toast.error(message);
+    }
+
     render() {
         return (
-            <Mutation
-                mutation={LOGIN_MUTATION}
-                onCompleted={(data) => {
-                    this.props.login(true);
-                    this.setState({ isLogged: true });
-                    sessionStorage.setItem('auth', JSON.stringify({
-                        name: 'auth',
-                        data: {
-                            token: data.login.token,
-                            role: data.login.role.role
-                        }
-                    }));
-                }}
-            >
-                {
-                    (login, {loading, error}) => {
-                        if(loading) return <Loading />
-                        if(error) return <p className="login-error">{error.message}</p>
+            <Fragment>
+                <Mutation
+                    mutation={LOGIN_MUTATION}
+                    onCompleted={(data) => {
+                        this.props.login(true);
+                        this.setState({ isLogged: true });
+                        sessionStorage.setItem('auth', JSON.stringify({
+                            name: 'auth',
+                            data: {
+                                token: data.login.token,
+                                role: data.login.role.role
+                            }
+                        }));
+                    }}
+                >
+                    {
+                        (login, {loading, error}) => {
+                            if(loading) return <Loading />
+                            if(error) this.notify(error.message);
 
-                        return (!this.state.isLogged) ? <LoginFrom login={login}/> : <Redirect to="/" />;
+                            return (!this.state.isLogged) ? <LoginFrom login={login}/> : <Redirect to="/" />;
+                        }
                     }
-                }
-            </Mutation>
+                </Mutation>
+            </Fragment>
         )
     }
 }

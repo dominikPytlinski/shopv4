@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import Mutation from 'react-apollo/Mutation';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import AddProductForm from './AddProductForm';
 import Loading from './Loading';
@@ -28,7 +28,6 @@ class AddProduct extends Component {
     {
         return(
             <Fragment>
-                <ToastContainer />
                 {
                     (this.props.isLogged) ?
                         <Mutation

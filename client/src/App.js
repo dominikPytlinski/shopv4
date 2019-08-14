@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 import Login from './components/Login';
 import Header from './components/Header';
@@ -45,7 +46,12 @@ class App extends Component {
     if(isLogout) {
       sessionStorage.clear();
       this.setState({ isLogged: false });
+      this.notify();
     }
+  }
+
+  notify = () => {
+    toast.success('Nastąpiło poprawne wylogowanie')
   }
 
   render() 
@@ -54,6 +60,7 @@ class App extends Component {
       <ApolloProvider client={client}>
         <BrowserRouter>
           <Header isLogged={this.state.isLogged}/>
+          <ToastContainer position="top-center" />
           <Route 
             path="/" exact
             render={() => <Main />}
