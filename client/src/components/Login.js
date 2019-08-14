@@ -37,7 +37,7 @@ class Login extends Component {
                 {
                     (login, {loading, error}) => {
                         if(loading) return <Loading />
-                        if(error) return <p>{error.message}</p>
+                        if(error) return <p className="login-error">{error.message}</p>
 
                         return (!this.state.isLogged) ? <LoginFrom login={login}/> : <Redirect to="/" />;
                     }

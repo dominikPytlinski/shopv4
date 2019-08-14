@@ -143,6 +143,18 @@ form .form-control select:focus {
     background-color: var(--primary-color);
 }
 
+.btn-danger {
+    color: #fff;
+    border: 1px solid var(--danger-color);
+    background-color: var(--danger-color);
+}
+
+.btn-info {
+    color: #fff;
+    border: 1px solid var(--info-color);
+    background-color: var(--info-color);
+}
+
 .btn-primary:focus,
 .btn-primary:active {
     box-shadow: 0 0 1pt 1pt var(--primary-color);
@@ -255,6 +267,15 @@ form .form-control select:focus {
 
 /* Page content end */
 
+/* Error login message */
+
+.login-error {
+    margin: 4rem auto 0 auto;
+    text-align: center;
+}
+
+/* Error login message end */
+
 /* Page item */
 
 .page-item {
@@ -324,6 +345,46 @@ form .form-control select:focus {
 }
 
 /* Page item end */
+
+/* Users */
+
+.user-content {
+    width: 90%;
+    margin: 4rem auto 0 auto;
+    border-radius: 5px;
+    padding: 1rem;
+    background-color: #efefef;
+}
+
+.user-content table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.user-content table tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.user-content table th {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem;
+}
+
+.user-content table td {
+    text-align: center;
+    padding: 1rem;
+    border: none;
+}
+
+.user-content table td button {
+    margin: 0 .1rem;
+}
+
+.user-content div {
+    margin-top: 1rem;
+}
+
+/* Users end */
 
 /* Single product */
 

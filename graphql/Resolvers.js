@@ -8,7 +8,9 @@ const ProductModel = require('../models/Product');
 const OrderModel = require('../models/Order');
 
 const Query = {
-    users: async () => {
+    users: async (parent, args, context) => {
+        if(!context.userId && context.role != 'admin') throw new Error('unauthorize');
+
         const users = await UserModel.find({});
         return users.map(user => {
             return {
@@ -35,7 +37,7 @@ const Query = {
             }
         });
     },
-    products: async (parent, args, context) => {
+    products: async () => {
         const products = await ProductModel.find({});
         return products.map(product => {
             return {
@@ -94,8 +96,8 @@ const Mutation = {
             role: user._doc.roleId
         }
     },
-    addProduct: async (parent, args, context) => {
-        // if(!context.userId) throw new Error('Unauthorize');
+    addProduct: async (_, args, context) => {
+        if(!context.userId && context.role != 'admin') throw new Error('unauthorize');
 
         const { name, desc, price, img, categoryId } = args;
 

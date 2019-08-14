@@ -34,7 +34,19 @@ app.use('/uploads', express.static('uploads'));
 
 const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    context: ({ req }) => {
+        const auth = req.headers.authorization;
+        if(auth) {
+            const token = auth.split(' ')[1];
+            try {
+                const decoded = jwt.verify(token, process.env.APP_KEY);
+                return { userId: decoded.userId, role: decoded.role }
+            } catch (error) {
+                console.log(error);
+            }            
+        }
+    } 
 });
 
 server.applyMiddleware({app});

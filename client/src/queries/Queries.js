@@ -57,3 +57,16 @@ export const GET_PRODUCT = gql`
         }
     }
 `;
+
+export const GET_USERS = gql`
+    query{
+        users{
+            id
+            email
+            role{
+                id
+                role
+            }
+        }
+    }
+`;

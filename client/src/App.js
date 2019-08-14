@@ -10,6 +10,7 @@ import AddProduct from './components/AddProduct';
 import Products from './components/Products';
 import Main from './components/Main';
 import Product from './components/Product';
+import Users from './components/Users';
 
 import './App.css';
 
@@ -68,6 +69,10 @@ class App extends Component {
           <Route 
             path="/add-product"
             render={() => <AddProduct isLogged={this.state.isLogged} />}
+          />
+          <Route 
+            path="/users"
+            render={() => <Users isLogged={this.state.isLogged} />}
           />
           <Route 
             path="/login"
