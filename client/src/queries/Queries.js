@@ -70,3 +70,25 @@ export const GET_USERS = gql`
         }
     }
 `;
+
+export const ADD_USER = gql`
+    mutation($email: String!, $password: String!, $roleId: ID!){
+        createUser(email: $email, password: $password, roleId: $roleId){
+            id
+            email
+            role{
+                id
+                role
+            }
+        }
+    }
+`;
+
+export const GET_ROLES = gql`
+    query{
+        roles{
+            id
+            role
+        }
+    }
+`;

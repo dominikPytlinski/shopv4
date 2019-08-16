@@ -52,7 +52,7 @@ class AddProductForm extends Component {
 
     render() {
         return (
-            <div className="add-product-form">
+            <div className="add-form">
                 <form onSubmit={this.submitHandler}>
                     <div className="form-control">
                         <label htmlFor="name">Nazwa:</label>

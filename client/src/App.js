@@ -12,6 +12,7 @@ import Products from './components/Products';
 import Main from './components/Main';
 import Product from './components/Product';
 import Users from './components/Users';
+import AddUser from './components/AddUser';
 
 import './App.css';
 
@@ -80,6 +81,10 @@ class App extends Component {
           <Route 
             path="/users"
             render={() => <Users isLogged={this.state.isLogged} />}
+          />
+          <Route
+            path="/add-user"
+            render={() => <AddUser isLogged={this.state.isLogged} />}
           />
           <Route 
             path="/login"

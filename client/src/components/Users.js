@@ -1,12 +1,27 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Query } from 'react-apollo';
+import { Link } from 'react-router-dom';
 
 import Loading from './Loading';
 
 import { GET_USERS } from '../queries/Queries';
 
 class Users extends Component {
+
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            refetch: false
+        }
+    }
+
+    componentDidMount()
+    {
+        this.setState({ refetch: true });
+    }
+
     render() {
         return (
             <section className="user-content">
@@ -16,7 +31,8 @@ class Users extends Component {
                     query={GET_USERS}
                 >
                     {
-                        ({ loading, error, data }) => {
+                        ({ loading, error, data, refetch }) => {
+                            if(this.state.refetch) {refetch()}
                             if(loading) return <Loading />
                             if(error) return <p>{error.message}</p>
 
@@ -46,7 +62,7 @@ class Users extends Component {
                                         </tbody>
                                     </table>
                                     <div>
-                                        <button className="btn btn-primary">Dodaj</button>
+                                        <Link className="btn btn-primary" to="/add-user">Dodaj</Link>
                                     </div>
                                 </Fragment>
                             )

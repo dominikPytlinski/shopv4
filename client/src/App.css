@@ -192,7 +192,7 @@ form .form-control select:focus {
 
 /* Add product form */
 
-.add-product-form {
+.add-form {
     border: 1px solid #000;
     width: 50%;
     margin: 6rem auto 0 auto;
@@ -203,7 +203,7 @@ form .form-control select:focus {
     box-shadow: 0 0 10px 3px rgba(0,0,0,0.75);
 }
 
-.add-product-form form .form-control section {
+.add-form form .form-control section {
     width: 90%;
     padding: 1rem;
     border: 2px solid #ccc;
