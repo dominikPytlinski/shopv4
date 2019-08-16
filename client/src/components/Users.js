@@ -44,7 +44,14 @@ class Users extends Component {
                         ({ loading, error, data, refetch }) => {
                             if(this.state.refetch) {refetch()}
                             if(loading) return <Loading />
-                            if(error) return <p>{error.message}</p>
+                            if(error) {
+                                if(error.message === 'GraphQL error: unauthorize') {
+                                    this.props.logout(true);
+                                    return <Redirect to="/login" />
+                                } else {
+                                    return <p>{error.message}</p>
+                                }
+                            }
 
                             return(
                                 <Fragment>
@@ -64,7 +71,7 @@ class Users extends Component {
                                                         <td>{user.role.role}</td>
                                                         <td>
                                                             <div className="action-btn">
-                                                                <button className="btn btn-info">Edytuj</button>
+                                                                <Link className="btn btn-info" to={`/edit-user/${user.id}`}>Edytuj</Link>
                                                                 <Mutation
                                                                     mutation={DELETE_USER}
                                                                     onCompleted={
@@ -76,11 +83,13 @@ class Users extends Component {
                                                                             <form
                                                                                 onSubmit={e => {
                                                                                     e.preventDefault();
-                                                                                    deleteUser({
-                                                                                        variables: {
-                                                                                            id: user.id
-                                                                                        }
-                                                                                    })
+                                                                                    if(window.confirm('Czy potwierdzasz?')) {
+                                                                                        deleteUser({
+                                                                                            variables: {
+                                                                                                id: user.id
+                                                                                            }
+                                                                                        })
+                                                                                    }
                                                                                 }}
                                                                             >
                                                                                 <button type="submit" className="btn btn-danger">Usuń</button>

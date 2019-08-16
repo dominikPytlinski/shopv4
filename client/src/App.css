@@ -389,6 +389,10 @@ form .form-control select:focus {
     justify-content: center;
 }
 
+.user-content .action-btn form button {
+    height: 100%;
+}
+
 /* Users end */
 
 /* Single product */

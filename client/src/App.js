@@ -13,6 +13,7 @@ import Main from './components/Main';
 import Product from './components/Product';
 import Users from './components/Users';
 import AddUser from './components/AddUser';
+import EditUser from './components/EditUser';
 
 import './App.css';
 
@@ -72,7 +73,7 @@ class App extends Component {
           />
           <Route
             path="/product/:id"
-            component={Product}
+            render={({ match }) => <Product id={match.params.id} />}
           />
           <Route 
             path="/add-product"
@@ -80,11 +81,15 @@ class App extends Component {
           />
           <Route 
             path="/users"
-            render={() => <Users isLogged={this.state.isLogged} />}
+            render={() => <Users isLogged={this.state.isLogged} logout={this.logout}/>}
           />
           <Route
             path="/add-user"
             render={() => <AddUser isLogged={this.state.isLogged} />}
+          />
+          <Route 
+            path="/edit-user/:id"
+            render={({ match }) => <EditUser isLogged={this.state.isLogged} id={match.params.id} />}
           />
           <Route 
             path="/login"

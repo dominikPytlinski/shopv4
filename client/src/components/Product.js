@@ -12,7 +12,7 @@ class Product extends Component {
             <section className="page-content" >
                 <Query
                     query={GET_PRODUCT}
-                    variables={{ id: this.props.match.params.id }}
+                    variables={{ id: this.props.id }}
                 >
                     {({ loading, error, data }) => {
                         if(loading) return <Loading />
