@@ -384,6 +384,11 @@ form .form-control select:focus {
     margin-top: 1rem;
 }
 
+.user-content .action-btn {
+    display: flex;
+    justify-content: center;
+}
+
 /* Users end */
 
 /* Single product */

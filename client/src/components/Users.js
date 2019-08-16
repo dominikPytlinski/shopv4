@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import Loading from './Loading';
 
-import { GET_USERS } from '../queries/Queries';
+import { GET_USERS, DELETE_USER } from '../queries/Queries';
 
 class Users extends Component {
 
@@ -20,6 +21,15 @@ class Users extends Component {
     componentDidMount()
     {
         this.setState({ refetch: true });
+    }
+
+    refetchHandler = () => {
+        this.setState({ refetch: true });
+        this.notify('User deleted');
+    }
+
+    notify = (message) => {
+        toast.success(message);
     }
 
     render() {
@@ -53,8 +63,32 @@ class Users extends Component {
                                                         <td>{user.email}</td>
                                                         <td>{user.role.role}</td>
                                                         <td>
-                                                            <button className="btn btn-info">Edytuj</button>
-                                                            <button className="btn btn-danger">Usuń</button>
+                                                            <div className="action-btn">
+                                                                <button className="btn btn-info">Edytuj</button>
+                                                                <Mutation
+                                                                    mutation={DELETE_USER}
+                                                                    onCompleted={
+                                                                        this.refetchHandler
+                                                                    }
+                                                                >
+                                                                    {(deleteUser, {data}) => {
+                                                                        return(
+                                                                            <form
+                                                                                onSubmit={e => {
+                                                                                    e.preventDefault();
+                                                                                    deleteUser({
+                                                                                        variables: {
+                                                                                            id: user.id
+                                                                                        }
+                                                                                    })
+                                                                                }}
+                                                                            >
+                                                                                <button type="submit" className="btn btn-danger">Usuń</button>
+                                                                            </form>
+                                                                        )
+                                                                    }}
+                                                                </Mutation>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 )
