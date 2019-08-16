@@ -74,6 +74,18 @@ const Mutation = {
             id: newUser._doc._id
         }
     },
+    deleteUser: async (parent, args) => {
+        const user = await UserModel.deleteOne({ _id: args.id });
+        if(user.n === 1) {
+            return {
+                message: 'deleted'
+            }
+        } else {
+            return {
+                message: 'there was a problem'
+            }
+        }
+    },
     login: async (parent, args) => {
         const user = await UserModel.findOne({ email: args.email });
         if(!user) throw new Error('Invalid credentials');

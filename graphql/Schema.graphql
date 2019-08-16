@@ -11,6 +11,7 @@ type Mutation {
     createUser(email: String!, password: String!, roleId: ID!): User!
     login(email: String!, password: String!): Auth!
     addProduct(name: String!, desc: String!, price: Float!, img: String, categoryId: ID!): Product!
+    deleteUser(id: ID!): Message!
 }
 
 type User {
@@ -53,4 +54,8 @@ type Auth {
     token: String!
     userId: ID!
     role: Role!
+}
+
+type Message {
+    message: String!
 }
