@@ -19,6 +19,13 @@ const Query = {
             }
         });
     },
+    user: async (parent, args) => {
+        const user = await UserModel.findById(args.id);
+        return {
+            ...user._doc,
+            id: user._doc._id
+        }
+    },
     roles: async () => {
         const roles = await RoleModel.find({});
         return roles.map(role => {
@@ -84,6 +91,17 @@ const Mutation = {
             return {
                 message: 'there was a problem'
             }
+        }
+    },
+    editUser: async (parent, args) => {
+        console.log(args.roleId)
+        if(args.password) {
+            const passwordHash = await bcrypt.hash(args.password, 12);
+            const user = UserModel.findByIdAndUpdate(args.id, { email: args.email, password: passwordHash, roleId: args.roleId })
+            return user;
+        } else {
+            const user = UserModel.findByIdAndUpdate(args.id, { email: args.email, roleId: args.roleId })
+            return user;
         }
     },
     login: async (parent, args) => {

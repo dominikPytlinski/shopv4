@@ -100,3 +100,29 @@ export const DELETE_USER = gql`
         }
     }
 `;
+
+export const GET_USER = gql`
+    query($id: ID!){
+        user(id: $id){
+            id
+            email
+            role{
+                id
+                role
+            }
+        }
+    }
+`;
+
+export const EDIT_USER = gql`
+    mutation($id: ID!, $email: String!, $password: String, $roleId: ID!){
+        editUser(id: $id, email: $email, password: $password, roleId: $roleId){
+            id
+            email
+            role{
+                id
+                role
+            }
+        }
+    }
+`;

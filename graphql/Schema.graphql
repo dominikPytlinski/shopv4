@@ -5,6 +5,7 @@ type Query {
     products: [Product]!
     product(id: ID!): Product!
     orders: [Order]!
+    user(id: ID!): User!
 }
 
 type Mutation {
@@ -12,6 +13,7 @@ type Mutation {
     login(email: String!, password: String!): Auth!
     addProduct(name: String!, desc: String!, price: Float!, img: String, categoryId: ID!): Product!
     deleteUser(id: ID!): Message!
+    editUser(id: ID!, email: String!, password: String, roleId: ID!): User!
 }
 
 type User {
