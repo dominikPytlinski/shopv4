@@ -7,17 +7,8 @@ import { toast } from 'react-toastify';
 
 class EditUser extends Component {
 
-    constructor(props)
-    {
-        super(props);
-        this.state = {
-            refetch: false
-        }
-    }
-
     notify = (message) => {
         toast.success(message);
-        this.setState({ refetch: true });
     }
 
     render() {
@@ -29,7 +20,6 @@ class EditUser extends Component {
                 >
                     {
                         ({ loading, error, data, refetch }) => {
-                            if(this.state.refetch) {refetch()}
                             if(loading) return <Loading />
                             if(error) return <p>{error.message}</p>
 
