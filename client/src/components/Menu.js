@@ -18,6 +18,7 @@ class Menu extends Component {
                         <NavLink to="/" exact activeClassName="selected" >Główna</NavLink>
                         <NavLink to="/products" activeClassName="selected" >Produkty</NavLink>
                         <NavLink to="/login" activeClassName="selected" >Zaloguj</NavLink>
+                        <NavLink to="/register" activeClassName="selected">Rejestracja</NavLink>
                     </Fragment>
                 }
             </div>

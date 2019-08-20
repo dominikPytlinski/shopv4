@@ -14,6 +14,7 @@ import Product from './components/Product';
 import Users from './components/Users';
 import AddUser from './components/AddUser';
 import EditUser from './components/EditUser';
+import Register from './components/Register';
 
 import './App.css';
 
@@ -94,6 +95,10 @@ class App extends Component {
           <Route 
             path="/login"
             render={() => <Login isLogged={this.state.isLogged} login={this.login} />}
+          />
+          <Route 
+            path="/register"
+            component={Register}
           />
           <Route
             path="/logout"

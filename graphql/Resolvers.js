@@ -9,7 +9,7 @@ const OrderModel = require('../models/Order');
 
 const Query = {
     users: async (parent, args, context) => {
-        if(!context.userId && context.role != 'admin') throw new Error('unauthorize');
+        if(!context.userId || context.role !== 'admin') throw new Error('unauthorize');
 
         const users = await UserModel.find({});
         return users.map(user => {
@@ -81,7 +81,10 @@ const Mutation = {
             id: newUser._doc._id
         }
     },
-    deleteUser: async (parent, args) => {
+    deleteUser: async (parent, args, context) => {
+        if(!context.userId || context.role !== 'admin') throw new Error('unauthorize');
+        
+        console.log(context)
         const user = await UserModel.deleteOne({ _id: args.id });
         if(user.n === 1) {
             return {
@@ -94,7 +97,6 @@ const Mutation = {
         }
     },
     editUser: async (parent, args) => {
-        console.log(args.roleId)
         if(args.password) {
             const passwordHash = await bcrypt.hash(args.password, 12);
             const user = UserModel.findByIdAndUpdate(args.id, { email: args.email, password: passwordHash, roleId: args.roleId })
